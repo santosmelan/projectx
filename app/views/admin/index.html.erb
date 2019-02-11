@@ -1,0 +1,9 @@
+<h2>Tools: </h2>
+
+<% if can? :create, User %>
+	<%= link_to 'Invite Member', new_user_invitation_path %>
+	<br />
+<% end %>
+<% if can? :access, :rails_admin %>	
+	<%= link_to 'Super Admin Dashboard', rails_admin_path %>
+<% end %>

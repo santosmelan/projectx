@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Projectx</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "Project X", root_path, id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+           
+            <% if user_signed_in? %>
+                <li>
+                  <% if current_user.admin? || current_user.super_admin? %>
+                    <%= link_to "Home", admin_path %>
+                  <% elsif current_user.member? %>
+                    <%= link_to "Home", member_path %>
+                  <% end %>
+                </li>
+                <li>
+                    <%= link_to "Profile", profile_path %>
+                </li>
+                <li>
+                    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+                </li>
+              </li>
+            <% else %>
+              <li><%= link_to "Log in", new_user_session_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      
+      <% if flash %>
+        <% flash.each do |key, value| %>
+          <%= content_tag :div, value, class: "flash #{key}" %>
+        <% end %>
+      <% end %>
+
+      <% if user_signed_in? %>
+          <% if current_user.admin? || current_user.super_admin? %>
+            <h1>Admin's Page</h1>
+          <% elsif current_user.member? %>
+            <h1>Member's Page</h1>
+          <% end %> 
+      <% end %>
+
+      <%= yield %>
+ 
+    </div>
+
+
+  </body>
+</html>
