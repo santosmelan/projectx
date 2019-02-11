@@ -11,7 +11,6 @@ gem 'cancancan'
 gem 'devise_invitable', '~> 1.7.0'
 gem 'rails_admin', '~> 1.3'
 gem 'bootstrap-sass', '3.3.7'
-# Use sqlite3 as the database for Active Record
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
