@@ -1,6 +1,30 @@
 class Users::InvitationsController < Devise::InvitationsController
   # before_action :configure_permitted_parameters, if: :devise_controller?
+  # POST /resource/invitation
+  def create
+    self.resource = invite_resource
+    resource_invited = resource.errors.empty?
 
+    yield resource if block_given?
+
+    if resource_invited
+      puts "RESOURCE_INVITED"
+      if is_flashing_format? && self.resource.invitation_sent_at
+        set_flash_message :notice, :send_instructions, :email => self.resource.email
+        puts "IS_FLASHING_FORMAT"
+      end
+      if self.method(:after_invite_path_for).arity == 1
+        puts "SELF METHOD - AFTER INVITE ONE"
+        respond_with resource, :location => after_invite_path_for(current_inviter)
+      else
+        puts "SELF METHOD - AFTER INVITE TWO"
+        respond_with resource, :location => after_invite_path_for(current_inviter, resource)
+      end
+    else
+      puts "NO RESOURCE_INVITED"
+      respond_with_navigational(resource) { render :new }
+    end
+  end
 
   protected
 
