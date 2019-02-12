@@ -4,15 +4,12 @@ Sample users:
 
 Member:
 member@projectx.com
-P@$$W0rd
 
 Admin:
 admin@projectx.com
-P@$$W0rd
 
 Super Admin:
 super_admin@projectx.com
-P@$$W0rd
 
 ----------------------------------------------------------------------
 
