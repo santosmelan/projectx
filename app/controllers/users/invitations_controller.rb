@@ -2,8 +2,6 @@ class Users::InvitationsController < Devise::InvitationsController
   # before_action :configure_permitted_parameters, if: :devise_controller?
   # POST /resource/invitation
   def create
-    User.invite!(:email => 'santosmelan@gmail.com', :first_name => "Melanie", :last_name => "Santos") 
-
     self.resource = invite_resource
     resource_invited = resource.errors.empty?
 
