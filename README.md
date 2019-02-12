@@ -33,7 +33,9 @@ To run locally:
 Download repo
 
 bundle install
+
 rails db:migrate
+
 rails db:seed
 
 Note: for activation, copy activation link from the server log upon inviting a user
