@@ -1,6 +1,9 @@
 class MemberController < ApplicationController
-  authorize_resource :class => MemberController
+  before_action :authenticate_user!
+  authorize_resource :class => false
+
   def index
+    
   end
 
 end
