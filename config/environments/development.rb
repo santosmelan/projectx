@@ -58,15 +58,15 @@ Rails.application.configure do
   #   :enable_starttls_auto => true
   # }
   #----------------------
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'gmail.com',
-    user_name:            Rails.application.credentials.gmail_username,
-    password:             Rails.application.credentials.gmail_password,
-    authentication:       :plain,
-    enable_starttls_auto: true
-  }
+  # config.action_mailer.smtp_settings = {
+  #   address:              'smtp.gmail.com',
+  #   port:                 587,
+  #   domain:               'gmail.com',
+  #   user_name:            Rails.application.credentials.gmail_username,
+  #   password:             Rails.application.credentials.gmail_password,
+  #   authentication:       :plain,
+  #   enable_starttls_auto: true
+  # }
 
 
   # Print deprecation notices to the Rails logger.

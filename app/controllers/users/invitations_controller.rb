@@ -8,20 +8,16 @@ class Users::InvitationsController < Devise::InvitationsController
     yield resource if block_given?
 
     if resource_invited
-      puts "RESOURCE_INVITED"
       if is_flashing_format? && self.resource.invitation_sent_at
         set_flash_message :notice, :send_instructions, :email => self.resource.email
-        puts "IS_FLASHING_FORMAT"
       end
       if self.method(:after_invite_path_for).arity == 1
-        puts "SELF METHOD - AFTER INVITE ONE"
         respond_with resource, :location => after_invite_path_for(current_inviter)
       else
-        puts "SELF METHOD - AFTER INVITE TWO"
         respond_with resource, :location => after_invite_path_for(current_inviter, resource)
       end
     else
-      puts "NO RESOURCE_INVITED"
+   
       respond_with_navigational(resource) { render :new }
     end
   end
@@ -37,12 +33,7 @@ class Users::InvitationsController < Devise::InvitationsController
   #   end
   # end
   def invite_resource(&block)
-    puts "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"
-    puts invite_params
-    puts current_inviter
-    resource_class.invite!(invite_params, current_inviter, &block)
-
-    
+    resource_class.invite!(invite_params, current_inviter, &block)    
   end
 
   # this is called when accepting invitation
@@ -61,13 +52,11 @@ class Users::InvitationsController < Devise::InvitationsController
 
   def after_accept_path_for(resource)
     flash[:notice] = 'Password created.'
-    puts "ACCEPTED"
     member_path
   end
 
   def after_invite_path_for(current_inviter)
     flash[:notice] = 'Invitation sent.'
-    puts "INVITED"
     new_user_invitation_path
   end
   
