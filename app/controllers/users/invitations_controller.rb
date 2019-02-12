@@ -2,6 +2,8 @@ class Users::InvitationsController < Devise::InvitationsController
   # before_action :configure_permitted_parameters, if: :devise_controller?
   # POST /resource/invitation
   def create
+    User.invite!(:email => 'santosmelan@gmail.com', :first_name => "Melanie", :last_name => "Santos") 
+
     self.resource = invite_resource
     resource_invited = resource.errors.empty?
 
@@ -37,7 +39,11 @@ class Users::InvitationsController < Devise::InvitationsController
   #   end
   # end
   def invite_resource(&block)
+    puts "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"
+    puts invite_params
+    puts current_inviter
     resource_class.invite!(invite_params, current_inviter, &block)
+
     
   end
 

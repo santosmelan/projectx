@@ -31,12 +31,31 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
   #for devise
+  
+
+
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.delivery_method = :smtp
+
+  
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  #host = 'santosmelan-projectx.herokuapp.com'
+  #config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => 'app124538130@heroku.com',#ENV['SENDGRID_USERNAME'],
+    :password       => 'woz4klnu3675',#ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
 
 
   # Print deprecation notices to the Rails logger.
